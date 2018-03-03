@@ -6,10 +6,15 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
+const mongoose = require('mongoose');
 const index = require('./routes/index');
 const users = require('./routes/users');
 
 const app = express();
+
+mongoose.connect('mongodb://127.0.0.1:27017/tienda',()=>{
+  console.log('Connected');
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -12,8 +12,12 @@ const users = require('./routes/users');
 
 const app = express();
 
-mongoose.connect('mongodb://127.0.0.1:27017/tienda',()=>{
-  console.log('Connected');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/tienda',(err)=>{
+    if (err) {
+        console.log('Something happened');
+    } else {
+        console.log('Connected');
+    }
 });
 
 // view engine setup

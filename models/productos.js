@@ -1,5 +1,5 @@
-let mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 let productSchema = new Schema({
   nombre: String,
@@ -8,4 +8,5 @@ let productSchema = new Schema({
 });
 
 let Product = mongoose.model('Product', productSchema);
-module.exports = Product;
+
+module.exports = {Product, productSchema};

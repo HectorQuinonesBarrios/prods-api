@@ -7,8 +7,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
 const mongoose = require('mongoose');
+
 const index = require('./routes/index');
 const users = require('./routes/users');
+const tienda = require('./routes/tienda');
 
 const app = express();
 
@@ -35,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/tienda', tienda);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -51,7 +54,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json(err);
 });
 
 module.exports = app;

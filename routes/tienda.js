@@ -265,19 +265,18 @@ router.put('/:usuario/:pedido/prods/update/:cantidad/:idProd', (req,res,next)=>{
             Producto.findOne({_id:req.params.idProd}).exec()
             .then(prod=>{
                 if (prod) {
-
+                    let updatedProd = user.updateProd(prod, Number(req.params.cantidad) ,req.params.pedido);
+                    if (updatedProd) {
+                        user.save();
+                        return res.status(200).json(updatedProd);
+                    } else {
+                        let error = new Error('Pedido not found');
+                        error.message = 'Pedido not found';
+                        return next(error);
+                    }
                 } else {
                     let error = new Error('Product not found');
                     error.message = 'Product not found';
-                    return next(error);
-                }
-                let updatedProd = user.updateProd(prod, Number(req.params.cantidad) ,req.params.pedido);
-                if (updatedProd) {
-                    user.save();
-                    return res.status(200).json(updatedProd);
-                } else {
-                    let error = new Error('Pedido not found');
-                    error.message = 'Pedido not found';
                     return next(error);
                 }
             })

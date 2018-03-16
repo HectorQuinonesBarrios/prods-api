@@ -139,7 +139,7 @@ router.put('/user/q/:id', (req,res,next)=>{
     let user = {
         nombre : req.body.nombre
     };
-    User.update({_id:req.params.id},{$set:{user}}).exec((err, user)=>{
+    User.update({_id:req.params.id},{$set:{user}}).exec((err)=>{
         return res.status(200).json(user);
     });
 });

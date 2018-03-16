@@ -130,7 +130,7 @@ router.put('/user/q/:id', (req,res,next)=>{
         error.message = 'Invalid id';
         return next(error);
     }
-    if (!req.body.nombre || !req.body.nombre == '') {
+    if (!req.body.nombre || req.body.nombre == '') {
         let error = new Error('Invalid name');
         error.status = 401;
         error.message = 'Invalid name';

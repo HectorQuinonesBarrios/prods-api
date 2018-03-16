@@ -110,7 +110,7 @@ router.get('/user/:id', (req,res,next)=>{
 });
 
 router.post('/user/q', (req,res,next)=>{
-    if (!req.body.name || req.body.name == '') {
+    if (!req.body.nombre || req.body.nombre == '') {
         let error = new Error('Name is required and unique');
         error.status = 401;
         error.message = 'Name is required and unique';
